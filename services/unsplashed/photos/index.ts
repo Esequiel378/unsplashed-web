@@ -1,1 +1,1 @@
-export { usePhotosList, photosPrefetchList } from "./queries";
+export { photosPrefetchList, usePhotosList } from './queries';
