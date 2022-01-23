@@ -1,6 +1,8 @@
 import { Button } from '@material-ui/core';
 import type { NextPage } from 'next';
 
+t = { a: 1 };
+
 const Home: NextPage = () => {
   return (
     <Button color="primary" variant="contained">
