@@ -1,3 +1,27 @@
 {
-  "extends": "next/core-web-vitals"
+  "extends": ["plugin:prettier/recommended"],
+  "rules": {
+    "object-shorthand": ["error", "always"],
+    "no-useless-rename": "error",
+    "simple-import-sort/imports": [
+      "error",
+      {
+        "groups": [["^\\u0000"], ["^react", "^@?\\w"], ["^"], ["^\\."]]
+      }
+    ],
+    "simple-import-sort/exports": "error",
+    "import/first": "error",
+    "import/newline-after-import": "error",
+    "import/no-duplicates": "error",
+    "unused-imports/no-unused-imports": "error"
+  },
+  "parserOptions": {
+    "ecmaVersion": 2020,
+    "ecmaFeatures": {
+      "experimentalObjectRestSpread": true
+    },
+    "sourceType": "module"
+  },
+  "plugins": ["import", "react", "react-hooks", "simple-import-sort", "unused-imports"],
+  "parser": "@typescript-eslint/parser"
 }

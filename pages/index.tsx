@@ -1,5 +1,5 @@
-import type { NextPage } from "next";
-import { Button } from "@material-ui/core";
+import { Button } from '@material-ui/core';
+import type { NextPage } from 'next';
 
 const Home: NextPage = () => {
   return (

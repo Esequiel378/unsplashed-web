@@ -1,1 +1,1 @@
-export { useSearchPhotos } from "./queries";
+export { useSearchPhotos } from './queries';

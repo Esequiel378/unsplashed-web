@@ -83,11 +83,10 @@ export interface Photo {
   liked_by_user: boolean;
   current_user_collections: any[];
   sponsorship: Sponsorship;
-
 }
 
 export interface PaginatedPhoto {
-    total: number;
-    total_pages: number;
-    results: Photo[];
-};
+  total: number;
+  total_pages: number;
+  results: Photo[];
+}

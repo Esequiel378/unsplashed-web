@@ -1,6 +1,6 @@
-import { dehydrate, QueryClient, useQuery } from "react-query";
-import http from "services/unsplashed/http-common";
-import { PaginatedPhoto } from "services/unsplashed/types";
+import { dehydrate, QueryClient, useQuery } from 'react-query';
+import http from 'services/unsplashed/http-common';
+import { PaginatedPhoto } from 'services/unsplashed/types';
 
 const photosList = async (): Promise<PaginatedPhoto> => {
   const { data } = await http.get<PaginatedPhoto>('/photos');
@@ -23,4 +23,3 @@ export const usePhotosList = () => {
 
   return query;
 };
-
