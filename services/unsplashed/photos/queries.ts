@@ -1,10 +1,19 @@
-import { dehydrate, QueryClient, useQuery } from 'react-query';
+import { dehydrate, QueryClient, useInfiniteQuery } from 'react-query';
 import http from 'services/unsplashed/http-common';
 import { PaginatedPhoto } from 'services/unsplashed/types';
 
-const photosList = async (params: Record<any, any>): Promise<PaginatedPhoto> => {
+const photosList = async ({
+  pageParam = 1,
+  params = {},
+}: {
+  pageParam?: number;
+  params?: Record<any, any>;
+}): Promise<PaginatedPhoto> => {
   const { data } = await http.get<PaginatedPhoto>('/photos', {
-    params,
+    params: {
+      page: pageParam,
+      ...params,
+    },
   });
 
   return data;
@@ -26,7 +35,11 @@ interface PhotoListProps {
 }
 
 export const usePhotosList = ({ params = {}, options = {} }: PhotoListProps) => {
-  const query = useQuery<PaginatedPhoto>(['photos', params], () => photosList(params), options);
+  const query = useInfiniteQuery<PaginatedPhoto>(
+    ['photos'],
+    ({ pageParam = 1 }) => photosList({ pageParam, params }),
+    options
+  );
 
   return query;
 };
