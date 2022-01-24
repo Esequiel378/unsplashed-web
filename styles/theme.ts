@@ -1,11 +1,11 @@
-import { createTheme } from '@material-ui/core/styles';
 import { red } from '@mui/material/colors';
+import { createTheme } from '@mui/material/styles';
 
 const theme = createTheme({
+  accent: {
+    main: '#D9C5B2',
+  },
   palette: {
-    accent: {
-      main: '#D9C5B2',
-    },
     primary: {
       main: '#040403',
     },
