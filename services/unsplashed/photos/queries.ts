@@ -2,8 +2,10 @@ import { dehydrate, QueryClient, useQuery } from 'react-query';
 import http from 'services/unsplashed/http-common';
 import { PaginatedPhoto } from 'services/unsplashed/types';
 
-const photosList = async (): Promise<PaginatedPhoto> => {
-  const { data } = await http.get<PaginatedPhoto>('/photos');
+const photosList = async (params: Record<any, any>): Promise<PaginatedPhoto> => {
+  const { data } = await http.get<PaginatedPhoto>('/photos', {
+    params,
+  });
 
   return data;
 };
@@ -18,8 +20,13 @@ export const photosPrefetchList = async () => {
   } as const;
 };
 
-export const usePhotosList = () => {
-  const query = useQuery<PaginatedPhoto>(['photos'], photosList);
+interface PhotoListProps {
+  params?: Record<any, any>;
+  options?: Record<any, any>;
+}
+
+export const usePhotosList = ({ params = {}, options = {} }: PhotoListProps) => {
+  const query = useQuery<PaginatedPhoto>(['photos', params], () => photosList(params), options);
 
   return query;
 };
