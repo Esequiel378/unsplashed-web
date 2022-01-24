@@ -1,16 +1,25 @@
 import { Box } from '@mui/system';
-import { photosPrefetchList, usePhotosList } from 'services/unsplashed/photos';
+import { useRouter } from 'next/router';
+import { useSearchPhotos } from 'services/unsplashed/search';
 import PaginatedPhotoList from 'src/components/PaginatedPhotoList';
 import usePaginatedPhotoList from 'src/components/PaginatedPhotoList/hooks';
 import SearchSection from 'src/components/SearchSection';
 
-const Home = () => {
+const SerachPhotos = () => {
+  const router = useRouter();
+  const { query } = router.query as { query: string };
+
   const {
     data: photos,
     fetchNextPage,
     hasNextPage,
     isFetchingNextPage,
-  } = usePaginatedPhotoList({ fetchWith: usePhotosList });
+  } = usePaginatedPhotoList({
+    fetchWith: useSearchPhotos,
+    config: {
+      query,
+    },
+  });
 
   return (
     <Box>
@@ -24,14 +33,4 @@ const Home = () => {
   );
 };
 
-export default Home;
-
-export async function getStaticProps() {
-  const dehydratedState = await photosPrefetchList();
-
-  return {
-    props: {
-      ...dehydratedState,
-    },
-  };
-}
+export default SerachPhotos;

@@ -36,7 +36,7 @@ interface PhotoListProps {
 
 export const usePhotosList = ({ params = {}, options = {} }: PhotoListProps) => {
   const query = useInfiniteQuery<PaginatedPhoto>(
-    ['photos'],
+    ['photos', params],
     ({ pageParam = 1 }) => photosList({ pageParam, params }),
     options
   );
