@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const URL = process.env.UNSPLASHED_URL ?? 'http://localhost/api';
+const URL = process.env.NEXT_PUBLIC_UNSPLASHED_URL ?? 'http://localhost/api';
 const SERVICE_URL = `${URL}/unsplash`;
 
 const http = axios.create({
