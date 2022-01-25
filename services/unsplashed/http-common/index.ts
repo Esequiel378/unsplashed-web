@@ -3,6 +3,7 @@ import axios from 'axios';
 const URL = process.env.UNSPLASHED_URL ?? 'http://localhost/api';
 const SERVICE_URL = `${URL}/unsplash`;
 
+console.log(process.env.UNSPLASHED_URL);
 console.log(URL);
 console.log(SERVICE_URL);
 
