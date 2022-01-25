@@ -4,9 +4,6 @@ const URL = process.env.NEXT_PUBLIC_UNSPLASHED_URL ?? 'http://localhost/api';
 const SERVICE_URL = `${URL}/unsplash`;
 
 console.log(process.env.NEXT_PUBLIC_UNSPLASHED_URL);
-console.log(process.env.NEXT_PUBLIC_UNSPLASHED_URL);
-console.log(URL);
-console.log(SERVICE_URL);
 
 const http = axios.create({
   baseURL: SERVICE_URL,
