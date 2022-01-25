@@ -1,9 +1,10 @@
 import axios from 'axios';
 
-const URL = process.env.UNSPLASHED_URL ?? 'http://localhost:4000/api/unsplash';
+const URL = process.env.UNSPLASHED_URL ?? 'http://localhost/api';
+const SERVICE_URL = `${URL}/unsplash`;
 
 const http = axios.create({
-  baseURL: URL,
+  baseURL: SERVICE_URL,
   headers: {
     'Content-type': 'application/json',
   },
