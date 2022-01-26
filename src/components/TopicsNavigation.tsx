@@ -27,7 +27,7 @@ const LinkTab = (props: LinkTabProps) => {
   );
 };
 
-const Topics = () => {
+const TopicsNavigation = () => {
   const { data: topics } = usePaginatedResponseList<Topics, PaginatedTopics>({
     fetchWith: useTopicsList,
     config: {
@@ -54,4 +54,4 @@ const Topics = () => {
   );
 };
 
-export default Topics;
+export default TopicsNavigation;

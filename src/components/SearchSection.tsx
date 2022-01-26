@@ -7,7 +7,7 @@ import { styled } from '@mui/material/styles';
 import { Box } from '@mui/system';
 import { useRouter } from 'next/router';
 
-import Topics from './Topics';
+import TopicsNavigation from './TopicsNavigation';
 
 const SearchContainer = styled('div')(({ theme }) => ({
   backgroundColor: theme.palette.common.black,
@@ -70,7 +70,7 @@ const SearchSection = () => {
       </SearchContainer>
 
       <Box sx={{ justifyContent: 'center', alignItems: 'center', backgroundColor: 'red' }}>
-        <Topics />
+        <TopicsNavigation />
       </Box>
     </Box>
   );
