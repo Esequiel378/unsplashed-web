@@ -1,8 +1,11 @@
+import { dehydrate, QueryClient } from 'react-query';
 import { Box } from '@mui/system';
 import { photosPrefetchList, usePhotosList } from 'services/unsplashed/photos';
+import { topicsPrefetchList } from 'services/unsplashed/topics';
+import { PaginatedPhoto, Photo } from 'services/unsplashed/types';
 import PaginatedPhotoList from 'src/components/PaginatedPhotoList';
-import usePaginatedPhotoList from 'src/components/PaginatedPhotoList/hooks';
 import SearchSection from 'src/components/SearchSection';
+import usePaginatedResponseList from 'src/hooks/usePaginatedResponseList';
 
 const Home = () => {
   const {
@@ -10,7 +13,7 @@ const Home = () => {
     fetchNextPage,
     hasNextPage,
     isFetchingNextPage,
-  } = usePaginatedPhotoList({ fetchWith: usePhotosList });
+  } = usePaginatedResponseList<Photo, PaginatedPhoto>({ fetchWith: usePhotosList });
 
   return (
     <Box>
@@ -26,12 +29,15 @@ const Home = () => {
 
 export default Home;
 
-export async function getStaticProps() {
-  const dehydratedState = await photosPrefetchList();
+export const getStaticProps = async () => {
+  const queryClient = new QueryClient();
+
+  await photosPrefetchList(queryClient);
+  await topicsPrefetchList(queryClient);
 
   return {
     props: {
-      ...dehydratedState,
+      dehydratedState: dehydrate(queryClient),
     },
   };
-}
+};

@@ -1,14 +1,14 @@
 import { Box } from '@mui/system';
 import { useRouter } from 'next/router';
-import { useSearchPhotos } from 'services/unsplashed/search';
+import { useTopicsPhotos } from 'services/unsplashed/topics';
 import { PaginatedPhoto, Photo } from 'services/unsplashed/types';
 import PaginatedPhotoList from 'src/components/PaginatedPhotoList';
 import SearchSection from 'src/components/SearchSection';
 import usePaginatedResponseList from 'src/hooks/usePaginatedResponseList';
 
-const SerachPhotos = () => {
+const Topic = () => {
   const router = useRouter();
-  const { query } = router.query as { query: string };
+  const { topic } = router.query as { topic: string };
 
   const {
     data: photos,
@@ -16,9 +16,9 @@ const SerachPhotos = () => {
     hasNextPage,
     isFetchingNextPage,
   } = usePaginatedResponseList<Photo, PaginatedPhoto>({
-    fetchWith: useSearchPhotos,
+    fetchWith: useTopicsPhotos,
     config: {
-      query,
+      slug: topic,
     },
   });
 
@@ -34,4 +34,4 @@ const SerachPhotos = () => {
   );
 };
 
-export default SerachPhotos;
+export default Topic;
