@@ -1,13 +1,15 @@
 import { useCallback, useState } from 'react';
 import { UseInfiniteQueryResult } from 'react-query';
-import { PaginatedPhoto, Photo } from 'services/unsplashed/types';
 
-interface PaginatedPhotoListProps {
-  fetchWith: (props: any) => UseInfiniteQueryResult<PaginatedPhoto>;
+interface PaginatedResponseListProps<PaginatedType> {
+  fetchWith: (props: any) => UseInfiniteQueryResult<PaginatedType>;
   config?: Record<any, any>;
 }
 
-const usePaginatedPhotoList = ({ fetchWith, config = {} }: PaginatedPhotoListProps) => {
+const usePaginatedResponseList = <ResponseType, PaginatedType extends { results: ResponseType[] }>({
+  fetchWith,
+  config = {},
+}: PaginatedResponseListProps<PaginatedType>) => {
   const [page, setPage] = useState(1);
 
   const query = fetchWith({
@@ -28,13 +30,13 @@ const usePaginatedPhotoList = ({ fetchWith, config = {} }: PaginatedPhotoListPro
     _fetchNextPage({ pageParam: page + 1 });
   };
 
-  const getPhotos = useCallback(() => {
+  const getFlatenData = useCallback(() => {
     const pages = data?.pages || [];
 
-    return pages.reduce<Photo[]>((acc, page) => [...acc, ...page.results], []);
+    return pages.reduce<ResponseType[]>((acc, page) => [...acc, ...page.results], []);
   }, [data]);
 
-  return { ...query, data: getPhotos(), fetchNextPage } as const;
+  return { ...query, data: getFlatenData(), fetchNextPage } as const;
 };
 
-export default usePaginatedPhotoList;
+export default usePaginatedResponseList;

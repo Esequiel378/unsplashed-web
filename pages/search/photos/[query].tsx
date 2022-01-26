@@ -1,9 +1,10 @@
 import { Box } from '@mui/system';
 import { useRouter } from 'next/router';
 import { useSearchPhotos } from 'services/unsplashed/search';
+import { PaginatedPhoto, Photo } from 'services/unsplashed/types';
 import PaginatedPhotoList from 'src/components/PaginatedPhotoList';
-import usePaginatedPhotoList from 'src/components/PaginatedPhotoList/hooks';
 import SearchSection from 'src/components/SearchSection';
+import usePaginatedResponseList from 'src/hooks/usePaginatedResponseList';
 
 const SerachPhotos = () => {
   const router = useRouter();
@@ -14,7 +15,7 @@ const SerachPhotos = () => {
     fetchNextPage,
     hasNextPage,
     isFetchingNextPage,
-  } = usePaginatedPhotoList({
+  } = usePaginatedResponseList<Photo, PaginatedPhoto>({
     fetchWith: useSearchPhotos,
     config: {
       query,
