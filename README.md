@@ -12,7 +12,7 @@ Now open [http://localhost:3000](http://localhost:3000) with your browser to see
 
 ## Learn More
 
-This app is deployed with Vercel, so you can have a live demo running on the web.
-Just navigate to [unsplashed-web.vercel.app](https://unsplashed-web.vercel.app/) and play around.
+This app was deployed with Vercel, ~~so you can have a live demo running on the web.
+Just navigate to [unsplashed-web.vercel.app](https://unsplashed-web.vercel.app/) and play around.~~
 
 Powered by [Unsplash](https://unsplash.com/developers)
